@@ -1,48 +1,45 @@
 # BetterUp Full Stack Engineer Interview Project
 
-Thanks again for your interest in the position!  We are excited to dive into the fun part of the interview process!
+Prototype for a web application for scheduling an appointment.
 
-Our goal is to focus conversations on real code instead of whiteboard logic puzzles.
+### System requirements
 
+- Ruby 2.7.1
 
-## Your mission...if you choose to accept it...
-Prototype a web application for scheduling an appointment
+## Setup
 
-## Requirements
+- run `rails db:setup`
+- run `rails availability:import data.csv`
+- start rails server (`rails s` locally)
+- visit localhost:3000 (or respective server root) and book an appointment!
 
-### Context
-Given a CSV dataset that contains the active coaches and their weekly schedule of their available hours: https://github.com/betterup/betterup-interview-fullstack/blob/master/data.csv
+## Summary
 
-### User Stories
-- As a User, I want to see which coaches I can schedule with.
-- As a User, I want to see what 30 minute timeslots are available to schedule with a particular
-coach.
-- As a User, I want to book an appointment with a coach at one of their available times
+- Took ~5 hours to implemement
+- Tradeoffs
+  - haven't implemented system tests.
+  - basic ux.
+  - would refactor to allow user to view in their local time.
+  - would likely use custom code for the calendar.
+  - would refactor / clean up some views.
+  - did not query for entire unavailable dates.
+  - not all unit tests completed.
 
-## Anti-Requirements
-Common questions or things that may get in the way
+- What went well:
+  - layouts and modeling.
 
-- **You can't do it all**. We respect your time, and expect that you will have to make choices and tradeoffs for what is in scope for your deliverable.
-- **Don’t worry about authentication**. Assume a non-authenticated experience to keep things simple
-- **Pick your stack**. Choose any libraries that help you produce the highest quality work in the time available.
+- What could be improved.
+  - Time zone could be selected by user, and availability shown in that respect
+  - query to hide calendar dates when no availability exists.
+  - ux could be improved.
+  - error handling on import and views.
+  - validation that appointment is within coaches available times.
+  - refactor queris.
+  - finish unit tests.
 
-## Evaluation Criteria
-**Our values infuse and guide the work we do**. They also provide a lens for evaluating this project. Some of the questions used when reviewing submissions include:
+## TODO
 
-- Is the codebase clear, concise, and
-understandable? *#craftsmanship*
-- Does the codebase follow best practices? *#craftsmanship*
-- Is the Information Architecture intuitive? *#playfulness*
-- Is the User eXperience fluid? *#playfulness*
-- Does the project feel alive and have a unique personality? *#zest*
-- Are there automated tests? *#craftsmanship*
-
-## Deliverables
-
-- Submit a pull request against this repository and be sure to include:
-  * Steps to setup and run the project locally
-  * How long did the project take you?
-  * What tradeoffs/choices did you make?
-  * What went well?
-  * What could be improved in the project?
-- Send an email to kat.stewart@betterup.co and lindsey.serrins@betterup.co to notify of project completion
+- implement system tests.
+- implement further unit tests.
+- refactor queries.
+- refactor views.

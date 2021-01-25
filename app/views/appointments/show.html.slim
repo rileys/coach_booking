@@ -1,0 +1,14 @@
+.container
+  .row
+    .col
+      h1 Appointment with #{@coach.name}
+
+      p
+        b When:
+        =< @appointment.start_time.in_time_zone(@coach.time_zone).to_formatted_s(:long_ordinal_with_period)
+
+      p
+        b Time Zone:
+        =< @coach.time_zone_string
+
+      p= link_to 'Back To All Coaches', root_path

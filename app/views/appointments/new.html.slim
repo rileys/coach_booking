@@ -1,0 +1,32 @@
+.container
+  .row
+    .col
+      nav aria-label="breadcrumb"
+        ol.breadcrumb
+          li.breadcrumb-item aria-current="page"= link_to 'All Coaches', root_path
+          li.breadcrumb-item aria-current="page"= link_to 'Calendar', calendar_coach_path(@coach)
+          - availability_date_iso = @appointment.start_time.to_date.to_formatted_s(:iso8601)
+          li.breadcrumb-item aria-current="page"= link_to "#{availability_date_iso} times", availability_for_date_coach_path(@coach, date: availability_date_iso)
+
+  .row
+    .col
+      h1 Create Appointment for #{@coach.name}
+
+      p
+        b Time Zone:
+        =< @coach.time_zone_string
+      p
+        b Date and Time:
+        =< @appointment.start_time.in_time_zone(@coach.time_zone).to_formatted_s(:long_ordinal_with_period)
+
+      - if @appointment.errors
+        - @appointment.errors.full_messages.each do |msg|
+          li= msg
+
+      = simple_form_for [@coach, @appointment] do |f|
+        = f.hidden_field :start_time
+        = f.input :email
+        = f.submit
+
+      br
+      = link_to 'Cancel', availability_for_date_coach_path(@coach, date: availability_date_iso)

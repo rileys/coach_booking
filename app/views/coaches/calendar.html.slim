@@ -1,6 +1,12 @@
 .container
   .row
     .col
+      nav aria-label="breadcrumb"
+        ol.breadcrumb
+          li.breadcrumb-item aria-current="page"= link_to 'All Coaches', root_path
+
+  .row
+    .col
       h1 Available Days for #{@coach.name}
       b Time Zone:
       =< @coach.time_zone_string
@@ -10,4 +16,4 @@
           div
             = date.day
             - if date.future? && @weekdays.include?(date.wday)
-              p View Hours
+              p= link_to 'View hours', availability_for_date_coach_path(@coach, date: date.to_formatted_s(:iso8601))

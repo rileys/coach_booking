@@ -1,0 +1,28 @@
+.container
+  .row
+    .col
+      nav aria-label="breadcrumb"
+        ol.breadcrumb
+          li.breadcrumb-item aria-current="page"= link_to 'All Coaches', root_path
+          li.breadcrumb-item aria-current="page"= link_to 'Calendar', calendar_coach_path(@coach)
+
+  .row
+    .col
+      h1 Available Times for #{@coach.name}
+      b Time Zone:
+      =< @coach.time_zone_string
+
+      h3.mt-4 Date: #{@date.to_formatted_s(:long)}
+      ul.list-group
+        - @available_weekdays.each do |available_weekday|
+          - (available_weekday.start_time.to_i...(available_weekday.end_time).to_i).step(30.minutes).each do |time_millis|
+            - time_of_day = Time.at(time_millis)
+            - datetime_in_zone = @date_in_zone + time_of_day.hour.hours + time_of_day.min.minutes
+            li.list-group-item
+              .row
+                .col-3= time_of_day.strftime('%I:%M%p')
+                .col-9
+                  - if @booked_appointment_start_times.include? datetime_in_zone
+                    b Unavailable
+                  - else
+                    = link_to 'Book Appointment', new_coach_appointment_path(@coach, start_time: datetime_in_zone)

@@ -1,5 +1,6 @@
 class Coach < ApplicationRecord
   has_many :available_weekdays, dependent: :destroy
+  has_many :appointments, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   validates :time_zone, presence: true

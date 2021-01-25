@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_193544) do
+ActiveRecord::Schema.define(version: 2021_01_25_210631) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "coach_id"
+    t.string "email", null: false
+    t.datetime "start_time", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["coach_id", "start_time"], name: "index_appointments_on_coach_id_and_start_time"
+    t.index ["coach_id"], name: "index_appointments_on_coach_id"
+  end
 
   create_table "available_weekdays", force: :cascade do |t|
     t.integer "coach_id"
@@ -31,5 +41,6 @@ ActiveRecord::Schema.define(version: 2021_01_25_193544) do
     t.index ["name"], name: "index_coaches_on_name"
   end
 
+  add_foreign_key "appointments", "coaches"
   add_foreign_key "available_weekdays", "coaches"
 end
