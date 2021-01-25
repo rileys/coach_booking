@@ -12,4 +12,4 @@
           tr
             td= coach.name
             td= coach.time_zone_string
-            td Calendar
+            td= link_to 'Calendar', calendar_coach_path(coach)

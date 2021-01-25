@@ -1,0 +1,13 @@
+.container
+  .row
+    .col
+      h1 Available Days for #{@coach.name}
+      b Time Zone:
+      =< @coach.time_zone_string
+
+      .mt-4
+        = month_calendar do |date|
+          div
+            = date.day
+            - if date.future? && @weekdays.include?(date.wday)
+              p View Hours
