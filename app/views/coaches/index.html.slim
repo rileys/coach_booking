@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-12
+      h4.my-4 Choose a Coach to view Availablity and schedule an appointment!
+
+      table.table.table-striped
+        tr
+          th Name
+          th Time Zone
+          th Calendar
+        - @coaches.each do |coach|
+          tr
+            td= coach.name
+            td= coach.time_zone_string
+            td Calendar
