@@ -1,4 +1,4 @@
-# BetterUp Full Stack Engineer Interview Project
+# Full Stack Engineer Interview Project
 
 Prototype for a web application for scheduling an appointment.
 
